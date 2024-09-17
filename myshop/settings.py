@@ -20,13 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-c)3-b$h#qw%f&7d6iwtc@vvex(vj=+po+2ipdf!dc17m*)z2q6'
+SECRET_KEY = 'django-insecure-y^2n9%r+@62y-4dl=)q)ca-e$&ksh9kzjs^(j9ksx^t&7rkme@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -37,6 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
+    'rest_framework',
+    'products',
+    'cart',
+    'orders',
+    'payment',
+
 ]
 
 MIDDLEWARE = [
@@ -54,7 +60,7 @@ ROOT_URLCONF = 'myshop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -62,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processor.cart',
             ],
         },
     },
@@ -116,8 +123,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# smtp configs
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'an.anuraag@gmail.com'
+EMAIL_HOST_PASSWORD = 'lbfllzevozlykoep'
+
+CART_SESSION_ID = "cart"
+
+STRIPE_PUBLISHABLE_KEY = "pk_test_51PcnWxSC2dHbc9h9AT5alPelHNH0HobxXn81DH5c02d2YnqXk0krZzn8HDW5HjQs1U8f6DLNoEORJPWGCOKKZKGw00pUfCAI5g"
+STRIPE_SECRET_KEY = "sk_test_51PcnWxSC2dHbc9h9VXz6cgrzGV7x4baxGWeHdwnZC5AXRtCQiUhzze9If3IbggrZZOMDDWRLOwFV9C42dQ92O0rv00OFGZLxA3"
+STRIPE_API_VERSION = "2022-08-01"
+STRIPE_WEBHOOK_SECRET = 'whsec_4c9786d65476161f143f19f84a0ef0ebc3306d911969320d9bb913b08b7c167b'

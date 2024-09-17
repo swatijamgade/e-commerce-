@@ -1,14 +1,11 @@
-from django.urls import path, include
-from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
-from django.contrib.auth.urls import urlpatterns
-from .views import ProfileView
-
+from django.urls import path
+from .views import LoginView, LogoutView, SignUpView, DashboardView
 
 app_name = "accounts"
 
 urlpatterns = [
-    path("profile/", ProfileView.as_view(), name="profile"),
+    path("dashboard/", DashboardView.as_view(), name="dashboard"),
     path('login/', LoginView.as_view(), name='login'),
-    path('logout/', LogoutView.as_view(), name='logout')
-    path('password_change/', PasswordChangeView.as_view(), name='password_change'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('register/', SignUpView.as_view(), name='register'),
 ]

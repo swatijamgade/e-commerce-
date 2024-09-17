@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>{% block title %}E-Commerce{% endblock %}</title>
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+</head>
+<body>
+<div id="header">
+    <a href="/" class="logo">E-Commerce</a>
+</div>
+<div id="subheader">
+{#    <div class="cart">#}
+{#        {% with total_items=cart|length %}#}
+{#            {% if total_items > 0 %}#}
+{#                Your cart:#}
+{#                <a href="{% url "cart:cart_detail" %}">#}
+{#                    {{ total_items }} item{{ total_items|pluralize }},#}
+{#                    Rs.{{ cart.get_total_price }}#}
+{#                </a>#}
+{#            {% elif not order %}#}
+{#                Your cart is empty.#}
+{#            {% endif %}#}
+{#        {% endwith %}#}
+{#    </div>#}
+</div>
+<div id="content">
+
+    {% block content %}
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+    {% endblock %}
+</div>
+<script src="{% static "js/base.js" %}"></script>
+</body>
+</html>
